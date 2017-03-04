@@ -30,7 +30,7 @@ package br.senac.tads3.pi3a.agenda;
 public class Teste {
   
   public void teste() {
-    System.out.println("mensagem de teste");
+    System.out.println("bla bla bla");
   }
   
 }
