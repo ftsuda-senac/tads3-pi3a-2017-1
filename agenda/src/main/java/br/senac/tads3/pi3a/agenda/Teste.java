@@ -31,6 +31,7 @@ public class Teste {
   
   public void teste() {
     System.out.println("bla bla bla");
+    System.out.println("outra mensagem");
   }
   
 }
