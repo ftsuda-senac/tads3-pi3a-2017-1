@@ -10,6 +10,9 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,29 +38,16 @@ public class AgendaServlet extends HttpServlet {
 	    new Date(), "ciclano@zmail.com", "5678"));
     lista.add(new Contato(3L, "Beltrana Maria",
 	    new Date(), "beltrana@zmail.com", "9012"));
-
-    response.setContentType("text/html");
-    try (PrintWriter out = response.getWriter()) {
-      out.println("<!DOCTYPE html>");
-      out.println("<html>");
-      out.println("<head>");
-      out.println("<meta charset=\"utf-8\" />");
-      out.println("<title>Primeiro Servlet</title>");
-      out.println("</head>");
-      out.println("<body>");
-      out.println("<h1>Agenda</h1>");
-      for (Contato c : lista) {
-	out.println("<div>");
-	out.println("<h2>" + c.getNome() + "</h2>");
-	out.println("<p>" + c.getEmail() + "</p>");
-	out.println("</div>");
-      }
-      out.println("</body>");
-      out.println("</html>");
-      out.flush();
+    
+    request.setAttribute("listaContato", lista);
+    RequestDispatcher dispatcher = 
+	    request.getRequestDispatcher("agenda2.jsp");
+    try {
+      dispatcher.forward(request, response);
     } catch (IOException ex) {
 
     }
+
   }
 
 }

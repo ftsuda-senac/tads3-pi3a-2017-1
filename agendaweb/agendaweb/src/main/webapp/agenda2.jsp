@@ -10,15 +10,10 @@
     <title>JSP Page</title>
   </head>
   <body>
-    <h1>Agenda</h1>
+    <h1>Agenda Servlet + JSP</h1>
     <%
-    List<Contato> lista = new ArrayList<Contato>();
-    lista.add(new Contato(1L, "Fulano da Silva",
-	    new Date(), "fulano@zmail.com", "1234"));
-    lista.add(new Contato(2L, "Ciclano de Souza",
-	    new Date(), "ciclano@zmail.com", "5678"));
-    lista.add(new Contato(3L, "Beltrana Maria",
-	    new Date(), "beltrana@zmail.com", "9012"));
+      List<Contato> lista = 
+	      (ArrayList<Contato>) request.getAttribute("listaContato");
       
       for (Contato c : lista) {
 	%>
