@@ -23,6 +23,7 @@
  */
 package br.senac.tads3.pi3a.agendaweb;
 
+import br.senac.tads3.pi3a.agendaweb.dao.ContatoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
@@ -73,6 +74,8 @@ public class EntradaServlet extends HttpServlet {
     String telefone = request.getParameter("telefone");
     
     Contato novo = new Contato(nome, new Date(), email, telefone);
+    ContatoDAO dao = new ContatoDAO();
+    dao.incluirComTransacao(novo);
     
     HttpSession sessao = request.getSession();
     sessao.setAttribute("novoContato", novo);

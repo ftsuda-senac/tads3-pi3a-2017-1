@@ -5,13 +5,9 @@
  */
 package br.senac.tads3.pi3a.agendaweb;
 
+import br.senac.tads3.pi3a.agendaweb.dao.ContatoDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,13 +27,8 @@ public class AgendaServlet extends HttpServlet {
 	  HttpServletResponse response)
 	  throws ServletException {
 
-    List<Contato> lista = new ArrayList<>();
-    lista.add(new Contato(1L, "Fulano da Silva",
-	    new Date(), "fulano@zmail.com", "1234"));
-    lista.add(new Contato(2L, "Ciclano de Souza",
-	    new Date(), "ciclano@zmail.com", "5678"));
-    lista.add(new Contato(3L, "Beltrana Maria",
-	    new Date(), "beltrana@zmail.com", "9012"));
+    ContatoDAO dao = new ContatoDAO();
+    List<Contato> lista = dao.listar();
     
     request.setAttribute("listaContatos", lista);
     RequestDispatcher dispatcher = 
