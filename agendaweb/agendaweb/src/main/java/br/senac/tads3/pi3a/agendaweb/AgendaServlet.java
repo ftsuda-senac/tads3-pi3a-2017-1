@@ -39,7 +39,7 @@ public class AgendaServlet extends HttpServlet {
     lista.add(new Contato(3L, "Beltrana Maria",
 	    new Date(), "beltrana@zmail.com", "9012"));
     
-    request.setAttribute("listaContato", lista);
+    request.setAttribute("listaContatos", lista);
     RequestDispatcher dispatcher = 
 	    request.getRequestDispatcher("agenda2.jsp");
     try {
