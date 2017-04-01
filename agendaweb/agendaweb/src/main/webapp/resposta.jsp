@@ -15,8 +15,9 @@
   <body>
     <h1>Novo contato adicionado</h1>
     <div>
-      <h2><c:out value="${novoContato.nome}" /></h2>
-      <p><c:out value="${novoContato.email}" /></p>
-      <p><c:out value="${novoContato.telefone}" /></p>
+      <h2><c:out value="${sessionScope.novoContato.nome}" /></h2>
+      <p><c:out value="${sessionScope.novoContato.email}" /></p>
+      <p><c:out value="${sessionScope.novoContato.telefone}" /></p>
   </body>
+  <c:remove scope="session" var="novoContato" />
 </html>

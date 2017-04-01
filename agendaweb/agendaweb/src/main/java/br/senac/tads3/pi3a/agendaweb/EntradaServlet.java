@@ -32,6 +32,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -73,9 +74,9 @@ public class EntradaServlet extends HttpServlet {
     
     Contato novo = new Contato(nome, new Date(), email, telefone);
     
-    request.setAttribute("novoContato", novo);
-    RequestDispatcher dispatcher = request.getRequestDispatcher("resposta.jsp");
-    dispatcher.forward(request, response);
+    HttpSession sessao = request.getSession();
+    sessao.setAttribute("novoContato", novo);
+    response.sendRedirect("resposta.jsp");
   }
 
 }
