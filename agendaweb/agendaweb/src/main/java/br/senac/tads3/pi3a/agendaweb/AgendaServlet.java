@@ -39,7 +39,7 @@ public class AgendaServlet extends HttpServlet {
     // Lógica para encaminhar a requisição para continuar
     // o processamento no JSP.
     RequestDispatcher dispatcher = 
-	    request.getRequestDispatcher("agenda2.jsp");
+	    request.getRequestDispatcher("agenda.jsp");
     try {
       dispatcher.forward(request, response);
     } catch (IOException ex) {
