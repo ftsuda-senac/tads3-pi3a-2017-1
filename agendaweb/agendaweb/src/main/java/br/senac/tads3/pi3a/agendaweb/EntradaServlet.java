@@ -69,14 +69,25 @@ public class EntradaServlet extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
 	  throws ServletException, IOException {
+    
+    // Recupera os dados enviados na requisição.
+    // Notar que o valor passado no getParameter()
+    // tem que ser igual ao valor configurado no 
+    // atributo "name" da tag <input>
     String nome = request.getParameter("nome");
     String email = request.getParameter("email");
     String telefone = request.getParameter("telefone");
     
+    // Cria um novo contato e salva
+    // através do DAO
     Contato novo = new Contato(nome, new Date(), email, telefone);
     ContatoDAO dao = new ContatoDAO();
     dao.incluirComTransacao(novo);
     
+    // Usa a sessao para manter os dados após
+    // redirect (técnica POST-REDIRECT-GET),
+    // usado para evitar dupla submissão dos
+    // dados
     HttpSession sessao = request.getSession();
     sessao.setAttribute("novoContato", novo);
     response.sendRedirect("resposta.jsp");

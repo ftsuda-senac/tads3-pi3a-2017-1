@@ -27,10 +27,17 @@ public class AgendaServlet extends HttpServlet {
 	  HttpServletResponse response)
 	  throws ServletException {
 
+    // Efetua o processamento (neste caso, recuperar
+    // a lista de contatos do banco
     ContatoDAO dao = new ContatoDAO();
     List<Contato> lista = dao.listar();
     
+    // Define um atributo para repassar a lista para o
+    // JSP
     request.setAttribute("listaContatos", lista);
+    
+    // Lógica para encaminhar a requisição para continuar
+    // o processamento no JSP.
     RequestDispatcher dispatcher = 
 	    request.getRequestDispatcher("agenda2.jsp");
     try {

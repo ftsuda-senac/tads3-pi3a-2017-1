@@ -1,4 +1,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%--
+  IMPORTAÇÃO DA BIBLIOTECA PARA USAR AS TAGS DA JSTL,
+  PARA PERMITIR DESENVOLVER LÓGICA NA GERAÇÃO DO
+  HTML DE SAÍDA
+--%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
@@ -32,8 +37,7 @@
 	  </tr>
 	  </c:forEach>
 	</table>
-	<p><a href="EntradaServlet">EntradaServlet</a></p>
-	<p><a href="Logout">Sair</a></p>
+	<p><a href="entrada">Incluir novo contato</a></p>
       </div>
     </div>
   </body>
