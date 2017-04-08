@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="estilos.css" />
   </head>
   <body>
+    <jsp:include page="./cabecalho.jsp" />
     <div class="conteudo">
       <h1>Agenda de contatos</h1>
       <div class="contatos">

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="estilos.css" />
   </head>
   <body>
+    <jsp:include page="./cabecalho.jsp" />
     <div class="contato">
       <h1>Inclusão de contato</h1>
       <div class="formulario">

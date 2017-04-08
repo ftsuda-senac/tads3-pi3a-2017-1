@@ -7,6 +7,8 @@ package br.senac.tads3.pi3a.agendaweb;
 
 import br.senac.tads3.pi3a.agendaweb.dao.ContatoDAO;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -26,11 +28,13 @@ public class AgendaServlet extends HttpServlet {
   public void doGet(HttpServletRequest request,
 	  HttpServletResponse response)
 	  throws ServletException {
+    
 
     // Efetua o processamento (neste caso, recuperar
     // a lista de contatos do banco
-    ContatoDAO dao = new ContatoDAO();
-    List<Contato> lista = dao.listar();
+    //ContatoDAO dao = new ContatoDAO();
+    //List<Contato> lista = dao.listar();
+    List<Contato> lista = Arrays.asList(new Contato(1L, "Fulano",new Date(), "fulano@teste.com", "1234"));
     
     // Define um atributo para repassar a lista para o
     // JSP
