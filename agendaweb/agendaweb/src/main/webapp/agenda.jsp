@@ -5,6 +5,7 @@
   HTML DE SAÍDA
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -17,6 +18,20 @@
     <jsp:include page="./cabecalho.jsp" />
     <div class="conteudo">
       <h1>Agenda de contatos</h1>
+      <c:choose>
+	<c:when test="${papelUsuario eq 'admin'}">
+	  <p>O usuário logado é administrador</p>
+	</c:when>
+	<c:when test="${papelUsuario eq 'vendedor'}">
+	  <p>O usuário logado é vendedor</p>
+	</c:when>
+	<c:otherwise>
+	  <p>Sem papel</p>
+	</c:otherwise>
+      </c:choose>
+      <c:if test="${papelUsuario eq 'admin'}">
+	<a href="#">Entrar na área de admin</a>
+      </c:if>
       <div class="contatos">
 	<table>
 	  <tr>
@@ -28,18 +43,19 @@
 	    <th>&nbsp;</th>
 	  </tr>
 	  <c:forEach items="${listaContatos}" var="contato">
-	  <tr>
-	    <td><c:out value="${contato.id}" /></td>
-	    <td><c:out value="${contato.nome}" /></td>
-	    <td><c:out value="${contato.dtNascimento}" /></td>
-	    <td><c:out value="${contato.email}" /></td>
-	    <td><c:out value="${contato.telefone}" /></td>
-	    <td><a href="#">Alterar</a>|<a href="#">Excluir</a></td>
-	  </tr>
+	    <tr>
+	      <td><c:out value="${contato.id}" /></td>
+	      <td><c:out value="${contato.nome}" /></td>
+	      <td><fmt:formatDate value="${contato.dtNascimento}" pattern="dd/MM/yyyy" /></td>
+	      <td><c:out value="${contato.email}" /></td>
+	      <td><c:out value="${contato.telefone}" /></td>
+	      <td><a href="#">Alterar</a>|<a href="#">Excluir</a></td>
+	    </tr>
 	  </c:forEach>
 	</table>
 	<p><a href="entrada">Incluir novo contato</a></p>
       </div>
     </div>
+    <fmt:formatNumber type="currency" value="99.99" />
   </body>
 </html>

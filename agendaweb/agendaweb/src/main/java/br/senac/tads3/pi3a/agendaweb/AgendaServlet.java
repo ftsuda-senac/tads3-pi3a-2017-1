@@ -29,6 +29,8 @@ public class AgendaServlet extends HttpServlet {
 	  HttpServletResponse response)
 	  throws ServletException {
     
+    String papel = request.getParameter("papel");
+    request.setAttribute("papelUsuario", papel);
 
     // Efetua o processamento (neste caso, recuperar
     // a lista de contatos do banco
