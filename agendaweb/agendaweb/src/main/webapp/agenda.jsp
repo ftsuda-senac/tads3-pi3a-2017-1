@@ -29,6 +29,14 @@
 	  <p>Sem papel</p>
 	</c:otherwise>
       </c:choose>
+
+      <c:if test="${not empty sessionScope.usuarioLogado}">
+	<p><c:out 
+	    value="${sessionScope.usuarioLogado.nomeCompleto}" /></p>
+	<p><c:out 
+	    value="${sessionScope.usuarioLogado.hashSenha}" /></p>
+      </c:if>
+
       <c:if test="${papelUsuario eq 'admin'}">
 	<a href="#">Entrar na área de admin</a>
       </c:if>
