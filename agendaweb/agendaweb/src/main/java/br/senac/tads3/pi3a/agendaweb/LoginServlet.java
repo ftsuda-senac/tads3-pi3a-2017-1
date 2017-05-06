@@ -52,6 +52,12 @@ public class LoginServlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	  throws ServletException, IOException {
+    HttpSession sessao = request.getSession(false);
+    UsuarioSistema usuario = (UsuarioSistema) sessao.getAttribute("usuarioLogado");
+    if (usuario != null) {
+      response.sendRedirect(request.getContextPath() + "/agenda");
+      return;
+    }
     RequestDispatcher dispatcher
 	    = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
     dispatcher.forward(request, response);
