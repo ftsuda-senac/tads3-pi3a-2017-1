@@ -21,14 +21,14 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author fernando.tsuda
  */
-@WebServlet("/agenda")
+@WebServlet(name = "AgendaServlet", urlPatterns = {"/agenda"})
 public class AgendaServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request,
 	  HttpServletResponse response)
 	  throws ServletException {
-    
+
     String papel = request.getParameter("papel");
     request.setAttribute("papelUsuario", papel);
 
@@ -36,16 +36,16 @@ public class AgendaServlet extends HttpServlet {
     // a lista de contatos do banco
     //ContatoDAO dao = new ContatoDAO();
     //List<Contato> lista = dao.listar();
-    List<Contato> lista = Arrays.asList(new Contato(1L, "Fulano",new Date(), "fulano@teste.com", "1234"));
-    
+    List<Contato> lista = Arrays.asList(new Contato(1L, "Fulano", new Date(), "fulano@teste.com", "1234"));
+
     // Define um atributo para repassar a lista para o
     // JSP
     request.setAttribute("listaContatos", lista);
-    
+
     // Lógica para encaminhar a requisição para continuar
     // o processamento no JSP.
-    RequestDispatcher dispatcher = 
-	    request.getRequestDispatcher("agenda.jsp");
+    RequestDispatcher dispatcher
+	    = request.getRequestDispatcher("agenda.jsp");
     try {
       dispatcher.forward(request, response);
     } catch (IOException ex) {
