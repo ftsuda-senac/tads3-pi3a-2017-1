@@ -35,6 +35,16 @@
 	    value="${sessionScope.usuarioLogado.nomeCompleto}" /></p>
 	<p><c:out 
 	    value="${sessionScope.usuarioLogado.hashSenha}" /></p>
+
+	<ul>
+	  <li>Opção 1</li>
+	  <li>Opção 2</li>
+	    <c:if test="${sessionScope.usuarioLogado.temPapel('ADMIN')}">
+	    <li>Opção ADMIN</li>
+	    </c:if>
+
+	</ul>
+	<a href="${pageContext.request.contextPath}/logout">Sair</a>
       </c:if>
 
       <c:if test="${papelUsuario eq 'admin'}">
