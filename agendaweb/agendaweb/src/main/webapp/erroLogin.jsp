@@ -13,6 +13,6 @@
   </head>
   <body>
     <h1>Usuário ou senha inválido</h1>
-    <p><a href="${requestScope.contextPath}/login">Voltar</a></p>
+    <p><a href="${pageContext.request.contextPath}/login">Voltar</a></p>
   </body>
 </html>
