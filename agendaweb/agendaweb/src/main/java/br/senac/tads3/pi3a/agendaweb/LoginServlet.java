@@ -25,7 +25,6 @@ package br.senac.tads3.pi3a.agendaweb;
 
 import br.senac.tads3.pi3a.agendaweb.model.UsuarioSistema;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -53,10 +52,12 @@ public class LoginServlet extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	  throws ServletException, IOException {
     HttpSession sessao = request.getSession(false);
-    UsuarioSistema usuario = (UsuarioSistema) sessao.getAttribute("usuarioLogado");
-    if (usuario != null) {
-      response.sendRedirect(request.getContextPath() + "/agenda");
-      return;
+    if (sessao != null) {
+      UsuarioSistema usuario = (UsuarioSistema) sessao.getAttribute("usuarioLogado");
+      if (usuario != null) {
+	response.sendRedirect(request.getContextPath() + "/agenda");
+	return;
+      }
     }
     RequestDispatcher dispatcher
 	    = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
@@ -83,17 +84,17 @@ public class LoginServlet extends HttpServlet {
 	    = UsuarioSistema.obterUsuario(usuario, senha);
     if (usuarioSistema != null) {
       // Usuario existe e a senha está correta.
-      
+
       // Primeiramente invalida sessao atual
       HttpSession sessao = request.getSession(false);
       if (sessao != null) {
 	sessao.invalidate();
       }
-      
+
       // Cria a nova sessao com o usuario logado
       sessao = request.getSession(true);
       sessao.setAttribute("usuarioLogado", usuarioSistema);
-      
+
       response.sendRedirect(request.getContextPath() + "/agenda");
     } else {
       response.sendRedirect(request.getContextPath() + "/erroLogin.jsp");
